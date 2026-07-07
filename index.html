@@ -2,20 +2,76 @@
 <html>
 <head>
   <title>PawDex</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    .hero {
+      padding: 80px 20px;
+    }
+
+    .logo {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 20px;
+      color: #cbd5e1;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 15px;
+      padding: 16px 24px;
+      background: #22c55e;
+      color: #052e16;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: #1e293b;
+      margin: 30px auto;
+      padding: 25px;
+      max-width: 500px;
+      border-radius: 18px;
+    }
+
+    .dex-number {
+      color: #22c55e;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Welcome to PawDex</h1>
-  <p>Every pet deserves a place in the PawDex.</p>
+  <div class="hero">
+    <div class="logo">🐾</div>
+    <h1>Welcome to PawDex</h1>
+    <p>The subscription-free digital home for every pet.</p>
 
-  <h2>Aspen</h2>
-  <p>If you found Aspen, please contact Jorge.</p>
+    <a class="button" href="#">Register a Pet</a>
+    <a class="button" href="#">Search PawDex</a>
 
-  <p>
-    <a href="tel:1234567890">Call Owner</a>
-  </p>
-
-  <p>
-    <a href="sms:1234567890">Text Owner</a>
-  </p>
+    <div class="card">
+      <p class="dex-number">PawDex #000001</p>
+      <h2>Aspen</h2>
+      <p>Pit / Shepherd Mix</p>
+      <p>Ability: Squirrel Lock-On</p>
+      <p>Signature Move: Zoomies</p>
+    </div>
+  </div>
 </body>
 </html>
