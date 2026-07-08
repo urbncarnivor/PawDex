@@ -64,36 +64,60 @@ function setImage(index) {
 // Database Voice
 // ---------------------------
 
-function speakEntry() {
-
-  const text =
-    "Connecting to the PawDex Database. Database online. Searching entries. Entry located. PawDex number zero zero zero zero zero one. Companion Aspen. Companion type canine guardian. Entry verified.";
+function speakText(lines) {
+  const text = lines.join(". ");
 
   const speech = new SpeechSynthesisUtterance(text);
 
-  speech.rate = 0.82;
+  speech.rate = 0.78;
   speech.pitch = 0.72;
   speech.volume = 1;
 
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(speech);
+}
 
+function speakEntry() {
+  speakText([
+    "Connecting to the PawDex Database",
+    "Database online",
+    "Searching entries",
+    "Entry located",
+    "Entry verified",
+    "Reading companion entry",
+    "Name: Aspen",
+    "PawDex I.D.: One",
+    "Species: Canine",
+    "Companion Type: Guardian",
+    "Breed: Pit Shepherd Mix",
+    "Temperament: Friendly. Easily excited. Protective",
+    "Signature Moves: Zoomies. Squirrel Lock-On",
+    "Entry Status: Registered",
+    "End of entry"
+  ]);
 }
 
 function speakAspenEntry() {
-
-  const text =
-    "Connecting to the PawDex Database. Database online. Searching entries. Entry located. PawDex number zero zero zero zero zero one. Aspen. Companion type canine guardian. Signature move. Zoomies. Natural trait. Squirrel Lock On. Entry verified.";
-
-  const speech = new SpeechSynthesisUtterance(text);
-
-  speech.rate = 0.82;
-  speech.pitch = 0.72;
-  speech.volume = 1;
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(speech);
-
+  speakText([
+    "Connecting to the PawDex Database",
+    "Database online",
+    "Searching entries",
+    "Entry located",
+    "Entry verified",
+    "Reading companion entry",
+    "Name: Aspen",
+    "PawDex I.D.: One",
+    "Species: Canine",
+    "Companion Type: Canine Guardian",
+    "Breed: Pit Shepherd Mix",
+    "Temperament: Friendly. Easily excited. Scared easily",
+    "Natural Trait: Squirrel Lock-On",
+    "Signature Moves: Zoomies. Alert Scan. Dad Radar",
+    "Owner Contact: Available",
+    "Medical Notes: No emergency notes listed",
+    "Entry Status: Registered",
+    "End of entry"
+  ]);
 }
 
 // ---------------------------
@@ -101,12 +125,10 @@ function speakAspenEntry() {
 // ---------------------------
 
 function databaseBoot() {
-
   console.log("Connecting to PawDex Database...");
   console.log("Database Online");
   console.log("Searching Entries...");
   console.log("Entry Located");
-
 }
 
 // ---------------------------
@@ -114,9 +136,6 @@ function databaseBoot() {
 // ---------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-
   updateGallery();
-
   databaseBoot();
-
 });
