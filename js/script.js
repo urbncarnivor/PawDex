@@ -1,3 +1,12 @@
+// ========================================
+// PawDex Database
+// script.js
+// ========================================
+
+// ---------------------------
+// Companion Gallery
+// ---------------------------
+
 const galleryImages = [
   "images/aspen-1.jpg",
   "images/aspen-2.jpg",
@@ -13,10 +22,13 @@ function updateGallery() {
   const counter = document.getElementById("galleryCounter");
   const thumbnails = document.querySelectorAll(".gallery-thumbnails img");
 
-  if (!mainImage || !counter) return;
+  if (!mainImage) return;
 
   mainImage.src = galleryImages[currentImageIndex];
-  counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+
+  if (counter) {
+    counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+  }
 
   thumbnails.forEach((thumb, index) => {
     thumb.classList.toggle("active-thumb", index === currentImageIndex);
@@ -24,13 +36,22 @@ function updateGallery() {
 }
 
 function nextImage() {
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  currentImageIndex++;
+
+  if (currentImageIndex >= galleryImages.length) {
+    currentImageIndex = 0;
+  }
+
   updateGallery();
 }
 
 function previousImage() {
-  currentImageIndex =
-    (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  currentImageIndex--;
+
+  if (currentImageIndex < 0) {
+    currentImageIndex = galleryImages.length - 1;
+  }
+
   updateGallery();
 }
 
@@ -39,30 +60,63 @@ function setImage(index) {
   updateGallery();
 }
 
-function speakEntry() {
-  const text =
-    "Connecting to the PawDex Database. Database online. Searching entries. Entry located. PawDex number zero zero zero zero zero one. Companion Aspen. Companion type canine guardian. Entry status verified.";
+// ---------------------------
+// Database Voice
+// ---------------------------
 
-  const voice = new SpeechSynthesisUtterance(text);
-  voice.rate = 0.82;
-  voice.pitch = 0.72;
-  voice.volume = 1;
+function speakEntry() {
+
+  const text =
+    "Connecting to the PawDex Database. Database online. Searching entries. Entry located. PawDex number zero zero zero zero zero one. Companion Aspen. Companion type canine guardian. Entry verified.";
+
+  const speech = new SpeechSynthesisUtterance(text);
+
+  speech.rate = 0.82;
+  speech.pitch = 0.72;
+  speech.volume = 1;
 
   window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(voice);
+  window.speechSynthesis.speak(speech);
+
 }
 
 function speakAspenEntry() {
-  const text =
-    "Connecting to the PawDex Database. Entry located. PawDex number zero zero zero zero zero one. Aspen. Companion type canine guardian. Natural trait, squirrel lock on. Signature move, zoomies. Status, verified.";
 
-  const voice = new SpeechSynthesisUtterance(text);
-  voice.rate = 0.82;
-  voice.pitch = 0.72;
-  voice.volume = 1;
+  const text =
+    "Connecting to the PawDex Database. Database online. Searching entries. Entry located. PawDex number zero zero zero zero zero one. Aspen. Companion type canine guardian. Signature move. Zoomies. Natural trait. Squirrel Lock On. Entry verified.";
+
+  const speech = new SpeechSynthesisUtterance(text);
+
+  speech.rate = 0.82;
+  speech.pitch = 0.72;
+  speech.volume = 1;
 
   window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(voice);
+  window.speechSynthesis.speak(speech);
+
 }
 
-document.addEventListener("DOMContentLoaded", updateGallery);
+// ---------------------------
+// Future Database Loader
+// ---------------------------
+
+function databaseBoot() {
+
+  console.log("Connecting to PawDex Database...");
+  console.log("Database Online");
+  console.log("Searching Entries...");
+  console.log("Entry Located");
+
+}
+
+// ---------------------------
+// Initialize
+// ---------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  updateGallery();
+
+  databaseBoot();
+
+});
