@@ -1,1 +1,50 @@
+body {
+    margin: 0;
+    background: #08152d;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.logo {
+    font-size: 60px;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 10px 0;
+}
+
+.subtitle {
+    color: #c9d1d9;
+    font-size: 20px;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    background: #3CFF72;
+    color: black;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.card {
+    width: 400px;
+    margin: 40px auto;
+    background: #162447;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.dex {
+    color: #3CFF72;
+    font-weight: bold;
+}
 
