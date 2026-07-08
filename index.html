@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PawDex | Digital Companion Collection</title>
+  <title>PawDex Database</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -13,53 +13,54 @@
   <header class="nav">
     <a class="brand" href="#">
       <span class="brand-mark">PD</span>
-      <span>PAWDEX</span>
+      <span>PAWDEX DATABASE</span>
     </a>
 
     <nav class="nav-links">
-      <a href="#database">Database</a>
+      <a href="#database">Database Home</a>
       <a href="#how">How It Works</a>
       <a href="#entry">Live Entry</a>
-      <a href="#map">Map</a>
+      <a href="#map">World Map</a>
+      <a href="#register">Register Companion</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="database">
       <div class="hero-copy">
-        <p class="system-status">● PAWDEX DATABASE ONLINE</p>
+        <p class="system-status">● DATABASE ONLINE</p>
 
-        <h1>Every Companion Has A Story.</h1>
+        <h1>Every Companion Deserves A Place In The Database.</h1>
 
         <p class="hero-text">
-          Join the digital companion collection built for NFC pet identification,
-          lifetime profiles, and a worldwide database of companions.
+          The PawDex Database is a digital companion collection built for NFC identification,
+          lifetime PawDex Entries, and a worldwide database of registered companions.
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#entry">View Live Entry</a>
+          <a class="btn primary" href="#entry">Access Live Entry</a>
           <a class="btn secondary" href="#register">Register Companion</a>
         </div>
 
         <div class="stats-row">
           <div>
             <strong>000001</strong>
-            <span>Companions</span>
+            <span>Registered Companions</span>
           </div>
           <div>
-            <strong>01</strong>
-            <span>Countries</span>
+            <strong>000001</strong>
+            <span>Database Entries</span>
           </div>
           <div>
-            <strong>LIVE</strong>
-            <span>Database</span>
+            <strong>ONLINE</strong>
+            <span>Database Status</span>
           </div>
         </div>
       </div>
 
       <div class="scanner-panel">
         <div class="panel-top">
-          <span>SCANNER MODE</span>
+          <span>DATABASE SCANNER</span>
           <span>ACTIVE</span>
         </div>
 
@@ -68,7 +69,7 @@
           <div class="target-ring"></div>
 
           <div class="scanner-data">
-            <small>ENTRY DETECTED</small>
+            <small>ENTRY LOCATED</small>
             <h2>#000001</h2>
             <h3>ASPEN</h3>
             <p>COMPANION TYPE: CANINE / GUARDIAN</p>
@@ -77,60 +78,60 @@
 
         <div class="panel-bottom">
           <span>NFC SIGNAL: READY</span>
-          <span>PROFILE: VERIFIED</span>
+          <span>ENTRY STATUS: VERIFIED</span>
         </div>
       </div>
     </section>
 
     <section class="section" id="how">
-      <p class="section-label">PROCESS</p>
-      <h2>How PawDex Works</h2>
+      <p class="section-label">DATABASE PROCESS</p>
+      <h2>How The Database Works</h2>
 
       <div class="steps">
         <article>
           <span>01</span>
-          <h3>Scan The Tag</h3>
+          <h3>Scan Entry</h3>
           <p>NFC or QR opens the companion’s PawDex Entry instantly.</p>
         </article>
 
         <article>
           <span>02</span>
-          <h3>View The Entry</h3>
-          <p>Finders see important info, medical notes, and contact options.</p>
+          <h3>Access Entry</h3>
+          <p>Finders see important companion information and contact options.</p>
         </article>
 
         <article>
           <span>03</span>
-          <h3>Reconnect Fast</h3>
-          <p>The owner can be contacted quickly without subscriptions or locked features.</p>
+          <h3>Reconnect Companion</h3>
+          <p>Owners can be contacted quickly without subscriptions or locked features.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <p class="section-label">BUILT DIFFERENT</p>
-      <h2>More Than A Pet Tag</h2>
+      <p class="section-label">DATABASE FEATURES</p>
+      <h2>More Than A Tag. A Living Database.</h2>
 
       <div class="feature-grid">
         <div class="feature-card">NFC + QR Backup</div>
-        <div class="feature-card">Lifetime Profile Updates</div>
+        <div class="feature-card">Lifetime Entry Updates</div>
         <div class="feature-card">Owner Contact Info</div>
         <div class="feature-card">Medical Notes</div>
         <div class="feature-card">Tap Notifications</div>
         <div class="feature-card">PawDex Number</div>
         <div class="feature-card">Companion Summary</div>
-        <div class="feature-card">World Database</div>
+        <div class="feature-card">Search Database</div>
       </div>
     </section>
 
     <section class="section entry-section" id="entry">
       <div class="entry-card">
         <div class="entry-header">
-          <span>PAWDEX ENTRY</span>
+          <span>DATABASE ENTRY</span>
           <span class="verified">VERIFIED</span>
         </div>
 
-        <h2>#000001 — ASPEN</h2>
+        <h2>PawDex #000001 — ASPEN</h2>
         <p class="entry-subtitle">Companion Type: Canine / Guardian</p>
 
         <div class="entry-grid">
@@ -147,7 +148,7 @@
             <strong>Zoomies</strong>
           </div>
           <div>
-            <small>Status</small>
+            <small>Entry Status</small>
             <strong>Registered</strong>
           </div>
         </div>
@@ -157,12 +158,12 @@
           fast movement, and staying close to her owner.
         </p>
 
-        <button class="btn primary full" onclick="speakEntry()">Play Scanner Voice</button>
+        <button class="btn primary full" onclick="speakEntry()">Play Database Voice</button>
       </div>
     </section>
 
     <section class="section map-section" id="map">
-      <p class="section-label">COMING SOON</p>
+      <p class="section-label">GLOBAL DATABASE</p>
       <h2>PawDex World Map</h2>
 
       <div class="map-preview">
@@ -170,15 +171,15 @@
         <div class="map-dot dot-2"></div>
         <div class="map-dot dot-3"></div>
         <div class="map-dot dot-4"></div>
-        <p>Companions registered around the world.</p>
+        <p>Companion entries will appear across the world as the Database grows.</p>
       </div>
     </section>
 
     <section class="section register-section" id="register">
-      <p class="section-label">JOIN THE DATABASE</p>
+      <p class="section-label">DATABASE ACCESS</p>
       <h2>Register Your Companion</h2>
       <p>
-        PawDex tags are in development. Follow the journey and be part of the first wave.
+        PawDex tags are in development. Follow the first wave and help build the Database.
       </p>
       <a class="btn primary" href="https://instagram.com/pawdex_database">Follow @pawdex_database</a>
     </section>
@@ -186,7 +187,7 @@
 
   <footer>
     <p>PAWDEX.IO</p>
-    <p>Every companion. Every story.</p>
+    <p>Every companion. Every story. Every entry belongs in the Database.</p>
   </footer>
 
   <script src="js/script.js"></script>

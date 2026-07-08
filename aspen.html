@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawDex #000001 | Aspen</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="scanline"></div>
+
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">PD</span>
+      <span>PAWDEX DATABASE</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">Database Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact Owner</a>
+      <a href="#medical">Medical</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section entry-section">
+      <div class="entry-card">
+
+        <div class="entry-header">
+          <span>DATABASE ENTRY</span>
+          <span class="verified">VERIFIED</span>
+        </div>
+
+        <h2>PawDex #000001 — ASPEN</h2>
+        <p class="entry-subtitle">Companion Type: Canine / Guardian</p>
+
+        <div id="gallery" class="companion-gallery">
+          <div class="gallery-frame">
+            <img id="mainCompanionImage" src="images/aspen-1.jpg" alt="Aspen primary scan image">
+            <div class="gallery-scan"></div>
+          </div>
+
+          <div class="gallery-controls">
+            <button onclick="previousImage()">◀</button>
+            <span id="galleryCounter">1 / 5</span>
+            <button onclick="nextImage()">▶</button>
+          </div>
+
+          <div class="gallery-thumbnails">
+            <img src="images/aspen-1.jpg" onclick="setImage(0)" alt="Aspen photo 1">
+            <img src="images/aspen-2.jpg" onclick="setImage(1)" alt="Aspen photo 2">
+            <img src="images/aspen-3.jpg" onclick="setImage(2)" alt="Aspen photo 3">
+            <img src="images/aspen-4.jpg" onclick="setImage(3)" alt="Aspen photo 4">
+            <img src="images/aspen-5.jpg" onclick="setImage(4)" alt="Aspen photo 5">
+          </div>
+        </div>
+
+        <div class="entry-grid">
+          <div><small>Name</small><strong>Aspen</strong></div>
+          <div><small>Species</small><strong>Canine</strong></div>
+          <div><small>Breed</small><strong>Pit / Shepherd Mix</strong></div>
+          <div><small>Entry Status</small><strong>Registered</strong></div>
+          <div><small>Trait</small><strong>Squirrel Lock-On</strong></div>
+          <div><small>Signature Move</small><strong>Zoomies</strong></div>
+        </div>
+
+        <p class="entry-description">
+          Aspen is a loyal, high-energy companion known for alert scanning,
+          fast movement, and staying close to her owner.
+        </p>
+
+        <button class="btn primary full" onclick="speakAspenEntry()">Play Database Voice</button>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <p class="section-label">OWNER CONTACT</p>
+      <h2>If Found, Contact Owner</h2>
+
+      <div class="feature-grid">
+        <a class="feature-card" href="tel:5555555555">Call Owner</a>
+        <a class="feature-card" href="sms:5555555555">Text Owner</a>
+        <a class="feature-card" href="mailto:owner@example.com">Email Owner</a>
+        <div class="feature-card">Reward Available</div>
+      </div>
+    </section>
+
+    <section class="section" id="medical">
+      <p class="section-label">MEDICAL NOTES</p>
+      <h2>Important Companion Information</h2>
+
+      <div class="entry-card">
+        <div class="entry-grid">
+          <div><small>Temperament</small><strong>Friendly / Excitable</strong></div>
+          <div><small>Food</small><strong>Regular Kibble</strong></div>
+          <div><small>Medical Notes</small><strong>No emergency notes listed</strong></div>
+          <div><small>Last Updated</small><strong>Database Entry v0.5</strong></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PAWDEX.IO</p>
+    <p>Every companion. Every story. Every entry belongs in the Database.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
