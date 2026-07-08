@@ -1,47 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawDex</title>
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawDex | Digital Companion Collection</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+  <div class="scanline"></div>
 
-    <div class="hero">
-
-        <div class="logo">🐾</div>
-
-        <h1>Welcome to PawDex</h1>
-
-        <p class="subtitle">
-            The subscription-free digital home for every pet.
-        </p>
-
-        <a class="button" href="#">Register a Pet</a>
-        <a class="button" href="#">Search PawDex</a>
-
-        <div class="card">
-
-            <p class="dex">PawDex #000001</p>
-
-            <h2>Aspen</h2>
-
-            <p>Pit / Shepherd Mix</p>
-
-            <p>Ability: Squirrel Lock-On</p>
-
-            <p>Signature Move: Zoomies</p>
-
-        </div>
-
+  <header class="nav">
+    <div class="brand">
+      <span class="brand-icon">◈</span>
+      <span>PAWDEX</span>
     </div>
 
-    <script src="js/script.js"></script>
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#demo">Live Entry</a>
+    </nav>
+  </header>
 
+  <main>
+    <section class="hero">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        DATABASE ONLINE
+      </div>
+
+      <h1>Every Companion Has A Story.</h1>
+
+      <p class="hero-subtitle">
+        Give yours a place in the PawDex — the world’s first digital companion collection with lifetime NFC identification.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn primary" href="#demo">View Live Entry</a>
+        <a class="btn secondary" href="#how">How It Works</a>
+      </div>
+
+      <div class="scanner-card">
+        <div class="scanner-header">
+          <span>PAWDEX SCANNER</span>
+          <span>ACTIVE</span>
+        </div>
+
+        <div class="scanner-screen">
+          <div class="scanner-ring"></div>
+          <div class="scanner-info">
+            <p>ENTRY DETECTED</p>
+            <h2>#000001</h2>
+            <h3>ASPEN</h3>
+            <span>COMPANION TYPE: CANINE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <p class="section-label">PROCESS</p>
+      <h2>How PawDex Works</h2>
+
+      <div class="steps">
+        <div class="step">
+          <span>01</span>
+          <h3>Activate Tag</h3>
+          <p>Each NFC tag connects to a unique PawDex Entry.</p>
+        </div>
+
+        <div class="step">
+          <span>02</span>
+          <h3>Open Entry</h3>
+          <p>A tap opens the companion’s profile instantly.</p>
+        </div>
+
+        <div class="step">
+          <span>03</span>
+          <h3>Contact Owner</h3>
+          <p>Finder can call, text, or submit a found report.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <p class="section-label">WHY PAWDEX</p>
+      <h2>Premium Features. No Subscription.</h2>
+
+      <div class="feature-grid">
+        <div class="feature">NFC + QR Backup</div>
+        <div class="feature">Lifetime Updates</div>
+        <div class="feature">Emergency Contacts</div>
+        <div class="feature">Medical Information</div>
+        <div class="feature">Tap Notifications</div>
+        <div class="feature">PawDex Database</div>
+      </div>
+    </section>
+
+    <section id="demo" class="section demo">
+      <div class="entry-card">
+        <div class="entry-top">
+          <span>PAWDEX ENTRY</span>
+          <span class="verified">VERIFIED</span>
+        </div>
+
+        <h2>#000001 — ASPEN</h2>
+        <p class="entry-type">Companion Type: Canine / Guardian</p>
+
+        <div class="entry-grid">
+          <div>
+            <small>Breed</small>
+            <strong>Pit / Shepherd Mix</strong>
+          </div>
+          <div>
+            <small>Trait</small>
+            <strong>Squirrel Lock-On</strong>
+          </div>
+          <div>
+            <small>Signature Move</small>
+            <strong>Zoomies</strong>
+          </div>
+          <div>
+            <small>Status</small>
+            <strong>Registered</strong>
+          </div>
+        </div>
+
+        <p class="entry-description">
+          Aspen is a loyal, high-energy companion known for alert scanning, fast movement, and staying close to her owner.
+        </p>
+
+        <button onclick="speakEntry()" class="btn primary full">Play Scanner Voice</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PAWDEX DATABASE // DIGITAL COMPANION COLLECTION</p>
+    <p>No subscriptions. No monthly fees. Every pet deserves a place in the PawDex.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
-
 </html>
