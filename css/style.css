@@ -494,3 +494,19 @@ footer p:first-child {
     height: 320px;
   }
 }
+/* ===== Photo Grid Override ===== */
+.photo-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+}
+
+.photo-grid img,
+.photo-grid img:first-child,
+.photo-grid img:last-child {
+    width: 100% !important;
+    height: 190px !important;
+    object-fit: cover !important;
+    grid-column: span 1 !important;
+    border-radius: 14px;
+}
