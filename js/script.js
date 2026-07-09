@@ -1,6 +1,7 @@
 // ========================================
 // PawDex Database
 // script.js
+// Version 0.5.2
 // ========================================
 
 // ---------------------------
@@ -8,11 +9,10 @@
 // ---------------------------
 
 const galleryImages = [
-  "images/aspen-1.jpg",
-  "images/aspen-2.jpg",
-  "images/aspen-3.jpg",
-  "images/aspen-4.jpg",
-  "images/aspen-5.jpg"
+  "images/aspen-1.jpeg",
+  "images/aspen-2.jpeg",
+  "images/aspen-3.jpeg",
+  "images/aspen-4.jpeg"
 ];
 
 let currentImageIndex = 0;
