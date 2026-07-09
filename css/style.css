@@ -510,3 +510,66 @@ footer p:first-child {
     grid-column: span 1 !important;
     border-radius: 14px;
 }
+/* ===== Photo Grid + Map Dot Fix ===== */
+
+.photo-grid img,
+.photo-grid img:first-child,
+.photo-grid img:last-child {
+  height: 240px !important;
+  object-fit: contain !important;
+  background: rgba(5, 5, 9, 0.85) !important;
+  padding: 4px;
+}
+
+.map-preview {
+  position: relative;
+  overflow: hidden;
+}
+
+.map-dot {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background: var(--lime);
+  border-radius: 50%;
+  box-shadow: 0 0 24px var(--lime);
+  animation: blink 1.4s infinite;
+}
+
+.dot-1 {
+  top: 28%;
+  left: 22%;
+}
+
+.dot-2 {
+  top: 44%;
+  left: 58%;
+  background: var(--pink);
+  box-shadow: 0 0 24px var(--pink);
+}
+
+.dot-3 {
+  top: 68%;
+  left: 37%;
+  background: var(--orange);
+  box-shadow: 0 0 24px var(--orange);
+}
+
+.dot-4 {
+  top: 22%;
+  left: 76%;
+  background: var(--cyan);
+  box-shadow: 0 0 24px var(--cyan);
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+}
