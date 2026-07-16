@@ -1,0 +1,16 @@
+{
+  "id": "000001",
+  "name": "Aspen",
+  "type": "Canine Companion",
+  "breed": "Pitbull / Shepherd Mix",
+  "status": "Verified",
+  "guardian": "Jorge",
+  "summary": "Energetic, loyal, and always ready for an adventure.",
+  "photos": [
+    "images/aspen-1.jpeg",
+    "images/aspen-2.jpeg",
+    "images/aspen-3.jpeg",
+    "images/aspen-4.jpeg",
+    "images/aspen-5.jpeg"
+  ]
+}
