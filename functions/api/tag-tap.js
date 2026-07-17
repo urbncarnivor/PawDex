@@ -101,13 +101,22 @@ if (
       body: pushRequest.body,
     });
 
-    if (!pushResponse.ok) {
-      const deliveryError = new Error(
-        `Push service returned ${pushResponse.status}.`
-      );
-      deliveryError.statusCode = pushResponse.status;
-      throw deliveryError;
-    }
+if (!pushResponse.ok) {
+  const errorBody = await pushResponse.text();
+
+  console.error("Push service rejected request:", {
+    status: pushResponse.status,
+    statusText: pushResponse.statusText,
+    body: errorBody,
+  });
+
+  const deliveryError = new Error(
+    `Push service returned ${pushResponse.status}: ${errorBody}`
+  );
+
+  deliveryError.statusCode = pushResponse.status;
+  throw deliveryError;
+}
     pushSent = true;
   } catch (pushError) {
     console.error("Push delivery error:", pushError);
