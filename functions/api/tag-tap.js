@@ -173,7 +173,16 @@ if (!pushResponse.ok) {
       location,
       emailId: emailResult.id,
     };
+const scanId = `${companionId}:${tappedAt.toISOString()}`;
 
+await env.PAWDEX_SCANS.put(
+  scanId,
+  JSON.stringify({
+    ...event,
+    pushSent,
+    source: "nfc",
+  })
+);
     console.log("PawDex alert sent:", event);
 
     return Response.json({
