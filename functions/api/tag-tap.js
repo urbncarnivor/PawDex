@@ -90,7 +90,6 @@ if (
         options: {
           ttl: 300,
           urgency: "high",
-          topic: `pawdex-${companionId}`,
         },
       },
     });
