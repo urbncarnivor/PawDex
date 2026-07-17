@@ -1,3 +1,4 @@
+import webpush from "web-push";
 export async function onRequestPost(context) {
   try {
     const request = context.request;
@@ -39,7 +40,48 @@ export async function onRequestPost(context) {
 
     const locationText =
       `${location.city}, ${location.region}, ${location.country}`;
+let pushSent = false;
 
+const savedSubscription = await env.PUSH_SUBSCRIPTIONS.get(
+  `companion:${companionId}`
+);
+
+if (
+  savedSubscription &&
+  env.VAPID_PUBLIC_KEY &&
+  env.VAPID_PRIVATE_KEY
+) {
+  webpush.setVapidDetails(
+    "mailto:info@pawdex.io",
+    env.VAPID_PUBLIC_KEY,
+    env.VAPID_PRIVATE_KEY
+  );
+
+  try {
+    await webpush.sendNotification(
+      JSON.parse(savedSubscription),
+      JSON.stringify({
+        title: "PawDex Alert: Aspen",
+        body: `Aspen's profile was opened near ${locationText}.`,
+        tag: `pawdex-${companionId}`,
+        url: "/aspen.html",
+      })
+    );
+
+    pushSent = true;
+  } catch (pushError) {
+    console.error("Push delivery error:", pushError);
+
+    if (
+      pushError.statusCode === 404 ||
+      pushError.statusCode === 410
+    ) {
+      await env.PUSH_SUBSCRIPTIONS.delete(
+        `companion:${companionId}`
+      );
+    }
+  }
+}
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
