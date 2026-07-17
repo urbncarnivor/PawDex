@@ -1,4 +1,4 @@
-import webpush from "web-push";
+import { buildPushHTTPRequest } from "@pushforge/builder";
 export async function onRequestPost(context) {
   try {
     const request = context.request;
@@ -51,23 +51,63 @@ if (
   env.VAPID_PUBLIC_KEY &&
   env.VAPID_PRIVATE_KEY
 ) {
-  webpush.setVapidDetails(
-    "mailto:info@pawdex.io",
-    env.VAPID_PUBLIC_KEY,
-    env.VAPID_PRIVATE_KEY
-  );
-
-  try {
-    await webpush.sendNotification(
-      JSON.parse(savedSubscription),
-      JSON.stringify({
-        title: "PawDex Alert: Aspen",
-        body: `Aspen's profile was opened near ${locationText}.`,
-        tag: `pawdex-${companionId}`,
-        url: "/aspen.html",
-      })
+  const decodeBase64Url = (value) => {
+    const base64 = value.replace(/-/g, "+").replace(/_/g, "/");
+    const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, "=");
+    return Uint8Array.from(atob(padded), (character) =>
+      character.charCodeAt(0)
     );
+  };
 
+  const encodeBase64Url = (bytes) =>
+    btoa(String.fromCharCode(...bytes))
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+
+  const publicKeyBytes = decodeBase64Url(env.VAPID_PUBLIC_KEY);
+  const privateJWK = {
+    kty: "EC",
+    crv: "P-256",
+    x: encodeBase64Url(publicKeyBytes.slice(1, 33)),
+    y: encodeBase64Url(publicKeyBytes.slice(33, 65)),
+    d: env.VAPID_PRIVATE_KEY,
+  };
+  try {
+    const subscription = JSON.parse(savedSubscription);
+
+    const pushRequest = await buildPushHTTPRequest({
+      privateJWK,
+      subscription,
+      message: {
+        payload: {
+          title: "PawDex Alert: Aspen",
+          body: `Aspen's profile was opened near ${locationText}.`,
+          tag: `pawdex-${companionId}`,
+          url: "/aspen.html",
+        },
+        adminContact: "mailto:info@pawdex.io",
+        options: {
+          ttl: 300,
+          urgency: "high",
+          topic: `pawdex-${companionId}`,
+        },
+      },
+    });
+
+    const pushResponse = await fetch(pushRequest.endpoint, {
+      method: "POST",
+      headers: pushRequest.headers,
+      body: pushRequest.body,
+    });
+
+    if (!pushResponse.ok) {
+      const deliveryError = new Error(
+        `Push service returned ${pushResponse.status}.`
+      );
+      deliveryError.statusCode = pushResponse.status;
+      throw deliveryError;
+    }
     pushSent = true;
   } catch (pushError) {
     console.error("Push delivery error:", pushError);
