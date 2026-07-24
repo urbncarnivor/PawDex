@@ -573,3 +573,14 @@ footer p:first-child {
     transform: scale(0.75);
   }
 }
+html {
+ scrollbar-width: none;
+}
+
+body {
+ -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+ display: none;
+}
