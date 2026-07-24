@@ -1,1 +1,5 @@
 node_modules/
+
+# PawDex kiosk logs
+pawdex-launcher.log
+pawdex-server.log
