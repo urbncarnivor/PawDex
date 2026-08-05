@@ -77,6 +77,56 @@ export async function onRequestPost(context) {
       throw new Error("Email environment variables are missing.");
     }
 
+        if (!env.PAWDEX_DB) {
+      throw new Error("PawDex database binding is missing.");
+    }
+
+    const existingSignup = await env.PAWDEX_DB
+      .prepare(
+        `SELECT id
+         FROM early_adopters
+         WHERE email = ? COLLATE NOCASE
+           AND companion_name = ? COLLATE NOCASE
+         LIMIT 1`
+      )
+      .bind(signup.email, signup.companionName)
+      .first();
+
+    if (existingSignup) {
+      return Response.json({
+        success: true,
+        alreadyRegistered: true,
+        message: "This companion is already on the PawDex early-adopter list."
+      });
+    }
+
+    const databaseResult = await env.PAWDEX_DB
+      .prepare(
+        `INSERT INTO early_adopters (
+          owner_name,
+          email,
+          companion_name,
+          companion_type,
+          purchase_interest,
+          marketing_consent,
+          event_source
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)`
+      )
+      .bind(
+        signup.ownerName,
+        signup.email,
+        signup.companionName,
+        signup.companionType,
+        signup.purchaseInterest ? 1 : 0,
+        signup.marketingConsent ? 1 : 0,
+        signup.eventSource
+      )
+      .run();
+
+    if (!databaseResult.success) {
+      throw new Error("PawDex signup could not be saved.");
+    }
+
     const safeOwnerName = escapeHtml(signup.ownerName);
     const safeEmail = escapeHtml(signup.email);
     const safeCompanionName = escapeHtml(signup.companionName);
