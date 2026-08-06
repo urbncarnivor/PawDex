@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
       companionType: String(formData.get("companionType") || "").trim(),
       purchaseInterest: formData.get("purchaseInterest") === "on",
       marketingConsent: formData.get("marketingConsent") === "on",
-      eventSource: "funky-town-louisville-july-2026"
+      eventSource: "pawdex-website"
     };
 
     if (
