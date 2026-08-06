@@ -284,8 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const payload = {
       ownerName: String(formData.get("ownerName") || "").trim(),
       email: String(formData.get("email") || "").trim().toLowerCase(),
+            phone: String(formData.get("phone") || "").trim(),
       companionName: String(formData.get("companionName") || "").trim(),
       companionType: String(formData.get("companionType") || "").trim(),
+            preferredPawdexId: String(
+        formData.get("preferredPawdexId") || ""
+      ).trim(),
       purchaseInterest: formData.get("purchaseInterest") === "on",
       marketingConsent: formData.get("marketingConsent") === "on",
       eventSource: "pawdex-website"

@@ -36,11 +36,21 @@ export async function onRequestPost(context) {
     const { request, env } = context;
     const body = await request.json();
 
+        const preferredPawdexIdText = String(
+      body.preferredPawdexId || ""
+    ).trim();
+
+    const preferredPawdexId =
+      preferredPawdexIdText === ""
+        ? null
+        : Number(preferredPawdexIdText);
     const signup = {
       ownerName: String(body.ownerName || "").trim(),
       email: String(body.email || "").trim().toLowerCase(),
+      phone: String(body.phone || "").trim(),
       companionName: String(body.companionName || "").trim(),
       companionType: String(body.companionType || "").trim(),
+            preferredPawdexId,
       purchaseInterest: body.purchaseInterest === true,
       marketingConsent: body.marketingConsent === true,
       eventSource: String(body.eventSource || "pawdex-website").trim(),
@@ -73,6 +83,23 @@ export async function onRequestPost(context) {
       );
     }
 
+        if (
+      signup.preferredPawdexId !== null &&
+      (
+        !Number.isInteger(signup.preferredPawdexId) ||
+        signup.preferredPawdexId < 1 ||
+        signup.preferredPawdexId > 999
+      )
+    ) {
+      return Response.json(
+        {
+          success: false,
+          message: "Please choose a PawDex ID between 001 and 999."
+        },
+        { status: 400 }
+      );
+    }
+
     if (!env.RESEND_API_KEY || !env.PAWDEX_ALERT_EMAIL) {
       throw new Error("Email environment variables are missing.");
     }
@@ -100,23 +127,67 @@ export async function onRequestPost(context) {
       });
     }
 
+        if (signup.preferredPawdexId !== null) {
+      const unavailableId = await env.PAWDEX_DB
+        .prepare(
+          `SELECT pawdex_id
+           FROM pawdex_ids
+           WHERE pawdex_id = ?
+           LIMIT 1`
+        )
+        .bind(signup.preferredPawdexId)
+        .first();
+
+      if (unavailableId) {
+        return Response.json(
+          {
+            success: false,
+            message: "That PawDex ID is already reserved. Please choose another."
+          },
+          { status: 409 }
+        );
+      }
+
+      await env.PAWDEX_DB
+        .prepare(
+          `INSERT INTO pawdex_ids (
+            pawdex_id,
+            status,
+            companion_name,
+            owner_email,
+            claimed_at
+          ) VALUES (?, 'claimed', ?, ?, ?)`
+        )
+        .bind(
+          signup.preferredPawdexId,
+          signup.companionName,
+          signup.email,
+          signup.createdAt
+        )
+        .run();
+    }
+
     const databaseResult = await env.PAWDEX_DB
       .prepare(
         `INSERT INTO early_adopters (
           owner_name,
           email,
+          phone,
           companion_name,
           companion_type,
+          preferred_pawdex_id,
           purchase_interest,
           marketing_consent,
           event_source
-        ) VALUES (?, ?, ?, ?, ?, ?, ?)`
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
       .bind(
         signup.ownerName,
         signup.email,
+        signup.phone,
         signup.companionName,
         signup.companionType,
+        signup.preferredPawdexId,
         signup.purchaseInterest ? 1 : 0,
         signup.marketingConsent ? 1 : 0,
         signup.eventSource
