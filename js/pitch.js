@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("PawDex early-adopter signup error:", error);
 
       formMessage.textContent =
-        "We could not complete the signup. Please try again.";
+                error.message || "We could not complete the signup. Please try again.";
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
