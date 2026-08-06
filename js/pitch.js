@@ -280,6 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const submitButton = form.querySelector(".pitch-submit-button");
     const formData = new FormData(form);
+    const companionPhoto = formData.get("companionPhoto");
 
     const payload = {
       ownerName: String(formData.get("ownerName") || "").trim(),
@@ -327,6 +328,28 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok || !result.success) {
         throw new Error(result.message || "Signup could not be completed.");
       }
+
+      if (companionPhoto instanceof File && companionPhoto.size > 0) {
+  formMessage.textContent = "Uploading your companion photo...";
+
+  const photoFormData = new FormData();
+  photoFormData.append("email", payload.email);
+  photoFormData.append("companionName", payload.companionName);
+  photoFormData.append("photo", companionPhoto);
+
+  const photoResponse = await fetch("/api/upload-photo", {
+    method: "POST",
+    body: photoFormData
+  });
+
+  const photoResult = await photoResponse.json();
+
+  if (!photoResponse.ok || !photoResult.success) {
+    throw new Error(
+      photoResult.message || "The companion photo could not be uploaded."
+    );}
+  }
+
 
       const successIndex = getSuccessSlideIndex();
 
